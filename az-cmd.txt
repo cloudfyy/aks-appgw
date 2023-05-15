@@ -1,0 +1,15 @@
+az identity create --name mytest-aks-ids --resource-group mytestaks
+
+{
+  "clientId": "a25da8cb-e442-4e85-99bf-d71d9cd65c51",
+  "id": "/subscriptions/595c5281-dd90-4ddf-9a98-e874a28529d0/resourcegroups/mytestaks/providers/Microsoft.ManagedIdentity/userAssignedIdentities/mytest-aks-ids",
+  "location": "eastus",
+  "name": "mytest-aks-ids",
+  "principalId": "16135de6-d675-48a1-95d4-04b7d22db8f4",
+  "resourceGroup": "mytestaks",
+  "tags": {},
+  "tenantId": "6bdfaeb3-c962-41e7-9107-7a6b2715e402",
+  "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+}
+
+az aks create -g mytestaks -n mytest-aks -l eastus  --node-count 3   --network-plugin kubenet   --vnet-subnet-id /subscriptions/595c5281-dd90-4ddf-9a98-e874a28529d0/resourceGroups/rg-aks-vent/providers/Microsoft.Network/virtualNetworks/vnet-aks-demo   --enable-managed-identity   --assign-identity /subscriptions/595c5281-dd90-4ddf-9a98-e874a28529d0/resourcegroups/mytestaks/providers/Microsoft.ManagedIdentity/userAssignedIdentities/mytest-aks-ids

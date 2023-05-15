@@ -1,4 +1,4 @@
-create_resource_group=false
+create_resource_group=true
 resource_group_name = "rg-aks-demo"
 location            = "eastus"
 #network configuration
@@ -9,7 +9,7 @@ aks_subnet_name         = "subnet-aks-demo"
 aks_subnet_ip_cidr  = ["10.52.0.0/24"]
 appgw_subnet_name         = "subnet-appgw-demo"
 appgw_subnet_ip_cidr  = ["10.52.1.0/24"]*/
-vnet_id="/subscriptions/595c5281-dd90-4ddf-9a98-e874a28529d0/resourceGroups/rg-aks-demo/providers/Microsoft.Network/virtualNetworks/vnet-aks-demo"
+vnet_id="/subscriptions/595c5281-dd90-4ddf-9a98-e874a28529d0/resourceGroups/rg-aks-vent/providers/Microsoft.Network/virtualNetworks/vnet-aks-demo"
 aks_subnet_name="subnet-aks-demo"
 appgw_subnet_name="subnet-appgw-demo"
 

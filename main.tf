@@ -9,7 +9,11 @@ resource "random_string" "acr_suffix" {
   special = false
 }
 
-
+resource "azurerm_user_assigned_identity" "aks_user_assigned_identity_control_plane" {
+  location            = local.resource_group.location
+  name                = "${var.cluster_name}-cp-identity"
+  resource_group_name = local.resource_group.name
+}
 
 module "aks" {
   source = "./aks-api"
@@ -28,11 +32,13 @@ module "aks" {
   os_disk_size_gb = 60
   sku_tier        = "Standard"
   rbac_aad        = false
+  role_based_access_control_enabled = true
   vnet_subnet_id  = local.subnet.aks_subnet_id
   #net_profile_service_cidr = var.net_profile_service_cidr
 
   load_balancer_sku = "standard"
-  identity_type    = "SystemAssigned"
+  identity_ids                         = [azurerm_user_assigned_identity.aks_user_assigned_identity_control_plane.id]
+  identity_type                        = "UserAssigned"
   cluster_name  = var.cluster_name
   rbac_aad_azure_rbac_enabled = false
   enable_auto_scaling = false

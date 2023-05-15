@@ -4,7 +4,7 @@ resource "azurerm_public_ip" "pip" {
   location            = local.resource_group.location
   allocation_method   = "Static"
   sku                 = "Standard"
-  zones = [1, 2, 3]
+  //zones = [1, 2, 3]
 }
 
 # -
@@ -40,15 +40,15 @@ resource "azurerm_application_gateway" "appgw" {
   sku {
     name     = "Standard_v2"
     tier     = "Standard_v2"
-    #capacity = 2
+    capacity = 2
   }
 
-  autoscale_configuration {
+  /*autoscale_configuration {
     min_capacity = 1
     max_capacity = 15
-  }
+  }*/
 
-  zones = [1, 2, 3]
+  //zones = [1, 2, 3]
 
   gateway_ip_configuration {
     name      = "${var.appgw_name}-ip-configuration"
@@ -87,7 +87,7 @@ resource "azurerm_application_gateway" "appgw" {
   request_routing_rule {
     name                       = "${var.appgw_name}-request-routing-rule"
     rule_type                  = "Basic"
-    http_listener_name         = "${var.appgw_name}-http-listen-name"
+    http_listener_name         = "${var.appgw_name}-http-listener-name"
     backend_address_pool_name  = "${var.appgw_name}-backend-address-pool"
     backend_http_settings_name = "${var.appgw_name}-backend-http-settings"
     priority                   = 1
