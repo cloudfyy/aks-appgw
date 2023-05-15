@@ -1,0 +1,5 @@
+Resources
+| where type == 'microsoft.network/virtualnetworks' and name='vnet-aks-demo'
+| extend subnets = properties.subnets
+| mv-expand subnets
+| project name, subnets.name, subnets.properties.addressPrefix, location, resourceGroup, subscriptionId
