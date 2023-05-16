@@ -9,9 +9,10 @@ locals {
     
   }
 
-  subnet = {
-    aks_subnet_id = var.create_vnet_and_subnet ? azurerm_subnet.akssubnet[0].id : "${var.vnet_id}/subnets/${var.aks_subnet_name}"
-    appgw_subnet_id = var.create_vnet_and_subnet ? azurerm_subnet.appgwsubnet[0].id : "${var.vnet_id}/subnets/${var.appgw_subnet_name}"
+   subnets = {
+    aks_subnet_id = var.create_vnet_and_subnet ? azurerm_virtual_network.aksvnet[0].id : data.azurerm_subnet.aks-subnet[0].id
+    appgw_subnet_id = var.create_vnet_and_subnet ? azurerm_virtual_network.aksvnet[0].id : data.azurerm_subnet.appgw-subnet[0].id
+    
   }
 
   diag_appgw_logs = [

@@ -52,7 +52,7 @@ resource "azurerm_application_gateway" "appgw" {
 
   gateway_ip_configuration {
     name      = "${var.appgw_name}-ip-configuration"
-    subnet_id = local.subnet.appgw_subnet_id
+    subnet_id = local.subnets.appgw_subnet_id
   }
 
   frontend_port {

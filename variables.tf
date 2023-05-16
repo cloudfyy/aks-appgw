@@ -25,9 +25,14 @@ variable "vnet_name" {
   default     = null
 }
 
-variable "vnet_id" {
+/*variable "vnet_id" {
   type        = string
   description = "vnet id"
+  default     = null
+}*/
+variable "vnet_rg_name" {
+  type        = string
+  description = "vnet resource group name"
   default     = null
 }
 

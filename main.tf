@@ -33,7 +33,7 @@ module "aks" {
   sku_tier        = "Standard"
   rbac_aad        = false
   role_based_access_control_enabled = true
-  vnet_subnet_id  = local.subnet.aks_subnet_id
+  vnet_subnet_id  = local.subnets.aks_subnet_id
   #net_profile_service_cidr = var.net_profile_service_cidr
 
   load_balancer_sku = "standard"
